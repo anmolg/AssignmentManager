@@ -16,6 +16,7 @@ public class ViewTask extends Activity {
 		TextView viewLastTask = (TextView) findViewById(R.id.lastTask);
 		TaskDB db = new TaskDB(this);
 		List<Task> lastTask = db.getAllTasks();
+		
 		String allTaskTitle = "";
 		for (int i = 0; i < lastTask.size(); i++) {
 			allTaskTitle = allTaskTitle + lastTask.get(i).getTitle() + "|||";
