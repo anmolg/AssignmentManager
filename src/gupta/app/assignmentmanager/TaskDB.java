@@ -73,13 +73,13 @@ public class TaskDB extends SQLiteOpenHelper{
 			cursor.moveToFirst();
 		}
 		
-		//int taskId = Integer.parseInt(cursor.getString(0));
+		int taskId = Integer.parseInt(cursor.getString(0));
 		String taskSubject = cursor.getString(1);
 		String taskTitle = cursor.getString(2);
 		long taskDate = Long.parseLong(cursor.getString(3));
 		Calendar taskDateCalendar = getCalendarAsInteger(taskDate);
 		
-		Task task = new Task(0, taskSubject, taskTitle, taskDateCalendar);
+		Task task = new Task(taskId, taskSubject, taskTitle, taskDateCalendar);
 		return task;
 	}
 	
@@ -123,7 +123,10 @@ public class TaskDB extends SQLiteOpenHelper{
 	}
 	
 	public void deleteTask(Task task) {
-		
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete (TABLE_TASKS, KEY_ID + " = ?",
+				new String[] { String.valueOf(task.getId())});
+		db.close();
 	}
 
 }

@@ -22,7 +22,8 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="40dp"
-        android:ems="10" >
+        android:ems="10" 
+        android:text="Subject" >
 
         <requestFocus />
     </EditText>
@@ -33,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addTaskSubject"
         android:layout_below="@+id/addTaskSubject"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="Title"/>
 
     <EditText
         android:id="@+id/day"
@@ -42,7 +44,8 @@
         android:layout_alignLeft="@+id/addTaskTitle"
         android:layout_below="@+id/addTaskTitle"
         android:layout_marginTop="32dp"
-        android:ems="10" />
+        android:ems="10"
+        android:text="Day" />
 
     <EditText
         android:id="@+id/month"
@@ -50,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/day"
         android:layout_below="@+id/day"
-        android:ems="10" />
+        android:ems="10"
+        android:text="Month" />
 
     <EditText
         android:id="@+id/year"
@@ -58,7 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/month"
         android:layout_below="@+id/month"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="Year"/>
 
     <Button
         android:id="@+id/ConfirmTaskButton"

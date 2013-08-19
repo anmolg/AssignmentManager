@@ -31,7 +31,7 @@ public final class R {
         public static final int addTaskTitle=0x7f080002;
         public static final int button2=0x7f080008;
         public static final int day=0x7f080003;
-        public static final int lastTask=0x7f080009;
+        public static final int listView=0x7f080009;
         public static final int month=0x7f080004;
         public static final int textView1=0x7f080000;
         public static final int year=0x7f080005;
