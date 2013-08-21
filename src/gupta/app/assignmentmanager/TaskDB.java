@@ -51,10 +51,10 @@ public class TaskDB extends SQLiteOpenHelper{
 		
 		ContentValues cv = new ContentValues();
 		
-		Calendar td = task.getDate();
-		Long calLong = task.getIntegerAsDate(td);
+		Long epoch = task.getDate();
+		//Long calLong = task.getIntegerAsDate(td);
 		
-		cv.put(KEY_DATE, calLong);
+		cv.put(KEY_DATE, epoch);
 		cv.put(KEY_SUBJECT, task.getSubject());
 		cv.put(KEY_TITLE, task.getTitle());
 		
@@ -77,9 +77,9 @@ public class TaskDB extends SQLiteOpenHelper{
 		String taskSubject = cursor.getString(1);
 		String taskTitle = cursor.getString(2);
 		long taskDate = Long.parseLong(cursor.getString(3));
-		Calendar taskDateCalendar = getCalendarAsInteger(taskDate);
+		//Calendar taskDateCalendar = getCalendarAsInteger(taskDate);
 		
-		Task task = new Task(taskId, taskSubject, taskTitle, taskDateCalendar);
+		Task task = new Task(taskId, taskSubject, taskTitle, taskDate);
 		return task;
 	}
 	
@@ -103,7 +103,7 @@ public class TaskDB extends SQLiteOpenHelper{
 				long taskDate = Long.parseLong(cursor.getString(3));
 				Calendar taskDateCalendar = getCalendarAsInteger(taskDate);
 				int taskId = Integer.parseInt(cursor.getString(0));
-				Task task = new Task(taskId, cursor.getString(1), cursor.getString(2), taskDateCalendar);
+				Task task = new Task(taskId, cursor.getString(1), cursor.getString(2), taskDate);
 				taskList.add(task);
 			}
 			while (cursor.moveToNext());

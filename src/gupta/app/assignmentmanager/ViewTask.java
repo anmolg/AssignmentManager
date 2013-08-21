@@ -1,7 +1,10 @@
 package gupta.app.assignmentmanager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,13 +54,14 @@ public class ViewTask extends Activity {
 			public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
 				TextView clickedView = (TextView) view;
 				Task task = allTasks.get(position);
-				Calendar taskDate = task.getDate();
-				int month = taskDate.get(Calendar.MONTH);
-				int year = taskDate.get(Calendar.YEAR);
-				
+				Long epoch = task.getDate();
+				Date date = new Date (epoch);
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				String finalDate = df.format(date);
+
 
 				Toast.makeText(ViewTask.this, 
-						"Item with id ["+id+"] - Position ["+position+"] - Planet ["+clickedView.getText()+"] Date - " + Integer.toString(year), 
+						"Item with id ["+id+"] - Position ["+position+"] - Planet ["+clickedView.getText()+"] Date - " + finalDate /*+ "Date - " + taskDate*/, 
 						Toast.LENGTH_SHORT).show();
 
 			}
@@ -143,6 +147,10 @@ public class ViewTask extends Activity {
 
 		}
 		return monthString;
+	}
+	
+	public Date convertEpochToDate(Long epoch) {
+		return null;
 	}
 
 	@Override

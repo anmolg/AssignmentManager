@@ -12,9 +12,9 @@ public class Task {
 	private int id;
 	private String subject;
 	private String title;
-	private Calendar date;
+	private Long date;
 	
-	public Task(int id, String subject, String title, Calendar date) {
+	public Task(int id, String subject, String title, Long date) {
 		this.subject = subject;
 		this.title = title;
 		this.date = date;
@@ -45,11 +45,11 @@ public class Task {
 		this.title = title;
 	}
 	
-	public Calendar getDate() {
+	public Long getDate() {
 		return date;
 	}
 	
-	public void setDate(Calendar date) {
+	public void setDate(Long date) {
 		this.date = date;
 	}
 	
