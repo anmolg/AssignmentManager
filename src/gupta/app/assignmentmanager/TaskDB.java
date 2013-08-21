@@ -93,7 +93,7 @@ public class TaskDB extends SQLiteOpenHelper{
 		List<Task> taskList = new ArrayList<Task>();
 		
 		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_TASKS;
+		String selectQuery = "SELECT  * FROM " + TABLE_TASKS + " ORDER BY " + KEY_DATE + " ASC";
 		
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
