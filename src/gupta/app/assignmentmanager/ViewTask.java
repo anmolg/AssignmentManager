@@ -14,7 +14,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -41,6 +43,7 @@ public class ViewTask extends Activity {
 		//allTasks = db.getAllTasks(); // after old tasks are removed
 
 		ListView lv = (ListView) findViewById(R.id.listView);
+		Button addTaskButton = (Button) findViewById(R.id.addTaskButton);
 
 
 
@@ -88,6 +91,15 @@ public class ViewTask extends Activity {
 			}
 		});
 		
+		addTaskButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				goToAddTask();
+				
+			}
+			
+		});
 
 	}
 	
@@ -137,6 +149,12 @@ public class ViewTask extends Activity {
 			}
 		}
 		
+	}
+	
+	private void goToAddTask() {
+		Intent refresh = new Intent (this, AddTask.class);
+		startActivity(refresh);
+		this.finish();
 	}
 
 
