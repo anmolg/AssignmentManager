@@ -8,7 +8,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TaskDB extends SQLiteOpenHelper{
@@ -101,7 +100,6 @@ public class TaskDB extends SQLiteOpenHelper{
 		if (cursor.moveToFirst()) {
 			do {
 				long taskDate = Long.parseLong(cursor.getString(3));
-				Calendar taskDateCalendar = getCalendarAsInteger(taskDate);
 				int taskId = Integer.parseInt(cursor.getString(0));
 				Task task = new Task(taskId, cursor.getString(1), cursor.getString(2), taskDate);
 				taskList.add(task);

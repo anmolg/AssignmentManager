@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ViewTask extends Activity {
@@ -61,7 +60,7 @@ public class ViewTask extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-				TextView clickedView = (TextView) view;
+				//TextView clickedView = (TextView) view;
 				Task task = allTasks.get(position);
 				Long epoch = task.getDate();
 				Date date = new Date (epoch);
@@ -82,7 +81,7 @@ public class ViewTask extends Activity {
 			public boolean onItemLongClick(AdapterView<?> parentAdapter, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				TextView clickedView = (TextView) view;
+				//TextView clickedView = (TextView) view;
 				Task task = allTasks.get(position);
 				//Toast.makeText(ViewTask.this, Integer.toString(task.getId()), Toast.LENGTH_SHORT).show();
 				
