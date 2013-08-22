@@ -67,8 +67,8 @@ public class ViewTask extends Activity {
 
 
 				Toast.makeText(ViewTask.this, 
-						"You have a(n) " + task.getTitle() + " due on " + finalDate, 
-						Toast.LENGTH_SHORT).show();
+						"You have a(n) " + task.getTitle() + " from " + task.getSubject() + " due on " + finalDate, 
+						Toast.LENGTH_LONG).show();
 
 			}
 		});
