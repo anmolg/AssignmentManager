@@ -8,13 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainScreen" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" 
-        />
-
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
@@ -29,9 +22,9 @@
         android:id="@+id/viewAllTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addTaskButton"
         android:layout_below="@+id/addTaskButton"
-        android:layout_marginTop="26dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
         android:text="View All Tasks" />
 
 </RelativeLayout>
