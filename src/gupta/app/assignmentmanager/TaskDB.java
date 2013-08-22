@@ -108,12 +108,8 @@ public class TaskDB extends SQLiteOpenHelper{
 			
 		}
 		
-		if (taskList.get(0) != null) {
-			return taskList;
-		}
-		else {
-			return null;
-		}
+		return taskList;
+		
 	}
 	
 	public int updateTask(Task task) {

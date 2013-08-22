@@ -32,7 +32,6 @@ public class ViewTask extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_task);
 
-		//TaskDB db = new TaskDB(this);
 		allTasks = db.getAllTasks();
 		convertToMappedList();
 		
