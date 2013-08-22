@@ -81,7 +81,7 @@ public class ViewTask extends Activity {
 				// TODO Auto-generated method stub
 				TextView clickedView = (TextView) view;
 				Task task = allTasks.get(position);
-				Toast.makeText(ViewTask.this, Integer.toString(task.getId()), Toast.LENGTH_SHORT).show();
+				//Toast.makeText(ViewTask.this, Integer.toString(task.getId()), Toast.LENGTH_SHORT).show();
 				
 				deleteTask(task);
 				return true;

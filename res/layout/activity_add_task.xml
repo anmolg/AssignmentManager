@@ -41,7 +41,8 @@
         android:layout_below="@+id/addTaskTitle"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Day (DD)" />
+        android:hint="Day (DD)"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/month"
@@ -50,7 +51,8 @@
         android:layout_alignLeft="@+id/day"
         android:layout_below="@+id/day"
         android:ems="10"
-        android:hint="Month (MM)" />
+        android:hint="Month (MM)" 
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/year"
@@ -59,7 +61,8 @@
         android:layout_alignLeft="@+id/month"
         android:layout_below="@+id/month"
         android:ems="10" 
-        android:hint="Year (YYYY)"/>
+        android:hint="Year (YYYY)"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/ConfirmTaskButton"
