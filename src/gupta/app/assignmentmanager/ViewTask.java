@@ -24,15 +24,21 @@ public class ViewTask extends Activity {
 
 	List<Map<String, String>> taskList = new ArrayList<Map<String, String>>();
 	List<Task> allTasks;
+	TaskDB db = new TaskDB(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_task);
 
-		TaskDB db = new TaskDB(this);
+		//TaskDB db = new TaskDB(this);
 		allTasks = db.getAllTasks();
 		convertToMappedList();
+		
+
+		deleteAllOldTasks();
+		
+		//allTasks = db.getAllTasks(); // after old tasks are removed
 
 		ListView lv = (ListView) findViewById(R.id.listView);
 
@@ -56,12 +62,12 @@ public class ViewTask extends Activity {
 				Task task = allTasks.get(position);
 				Long epoch = task.getDate();
 				Date date = new Date (epoch);
-				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy", java.util.Locale.getDefault());
 				String finalDate = df.format(date);
 
 
 				Toast.makeText(ViewTask.this, 
-						"Item with id ["+id+"] - Position ["+position+"] - Planet ["+clickedView.getText()+"] Date - " + finalDate /*+ "Date - " + taskDate*/, 
+						"You have a(n) " + task.getTitle() + " due on " + finalDate, 
 						Toast.LENGTH_SHORT).show();
 
 			}
@@ -81,6 +87,7 @@ public class ViewTask extends Activity {
 				return true;
 			}
 		});
+		
 
 	}
 	
@@ -95,7 +102,9 @@ public class ViewTask extends Activity {
 	private void convertToMappedList() {
 		for (int i = 0; i < allTasks.size(); i++) {
 			HashMap<String, String> planet = new HashMap<String, String>();
-			planet.put("task", allTasks.get(i).getTitle());
+			Task task = allTasks.get(i);
+			String appear = task.getSubject() + ": " + task.getTitle();
+			planet.put("task", appear);
 			taskList.add(planet);
 		}
 
@@ -103,52 +112,6 @@ public class ViewTask extends Activity {
 
 	}
 
-	private String convertMonthToString(int month) {
-		String monthString = "";
-		switch (month) {
-		case 1: monthString = "January";
-		break;
-		
-		case 2: monthString = "February";
-		break;
-		
-		case 3: monthString = "March";
-		break;
-		
-		case 4: monthString = "April";
-		break;
-		
-		case 5: monthString = "May";
-		break;
-		
-		case 6: monthString = "June";
-		break;
-		
-		case 7: monthString = "July";
-		break;
-		
-		case 8: monthString = "August";
-		break;
-		
-		case 9: monthString = "September";
-		break;
-		
-		case 10: monthString = "October";
-		break;
-		
-		case 11: monthString = "November";
-		break;
-		
-		case 12: monthString = "December";
-		break;
-		
-		default: monthString = "Invalid Month";
-		break;
-
-		}
-		return monthString;
-	}
-	
 	public Date convertEpochToDate(Long epoch) {
 		return null;
 	}
@@ -158,6 +121,22 @@ public class ViewTask extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_task, menu);
 		return true;
+	}
+	
+	private void deleteAllOldTasks() {
+		//TaskDB db = new TaskDB(this);
+		Calendar now = Calendar.getInstance();
+		
+		for (Task t : allTasks) {
+			if (t.getDate() < now.getTimeInMillis()) {
+				db.deleteTask(t);
+				Intent refresh = new Intent (this, ViewTask.class);
+				startActivity(refresh);
+				this.finish();
+				
+			}
+		}
+		
 	}
 
 

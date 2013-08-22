@@ -25,15 +25,16 @@ public final class R {
     }
     public static final class id {
         public static final int ConfirmTaskButton=0x7f080006;
-        public static final int action_settings=0x7f08000a;
-        public static final int addTaskButton=0x7f080007;
-        public static final int addTaskSubject=0x7f080001;
+        public static final int action_settings=0x7f08000b;
+        public static final int addMoreTaskButton=0x7f080007;
+        public static final int addTaskButton=0x7f080008;
+        public static final int addTaskSubject=0x7f080000;
         public static final int addTaskTitle=0x7f080002;
-        public static final int button2=0x7f080008;
         public static final int day=0x7f080003;
-        public static final int listView=0x7f080009;
+        public static final int listView=0x7f08000a;
         public static final int month=0x7f080004;
-        public static final int textView1=0x7f080000;
+        public static final int textView1=0x7f080001;
+        public static final int viewAllTaskButton=0x7f080009;
         public static final int year=0x7f080005;
     }
     public static final class layout {

@@ -2,11 +2,12 @@ package gupta.app.assignmentmanager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -22,18 +23,30 @@ public class AddTask extends Activity {
 		setContentView(R.layout.activity_add_task);
 		
 		Button confirmTask = (Button) findViewById(R.id.ConfirmTaskButton);
+		Button addMoreTask = (Button) findViewById(R.id.addMoreTaskButton);
 		
 		confirmTask.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
 				addTask();
+				goToViewTask();
 				
 			}
 			
 		});
 		
-		Intent intent = getIntent();
+		addMoreTask.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				addTask();
+				refresh();
+			}
+			
+		});
+		
+		//Intent intent = getIntent();
 	}
 
 	@Override
@@ -54,14 +67,12 @@ public class AddTask extends Activity {
 		String title = editTextTitle.getText().toString();
 		String year = editTextYear.getText().toString();
 		String day = editTextDay.getText().toString();
-		//int year = Integer.parseInt(editTextYear.getText().toString());
 		int numMonth = Integer.parseInt(editTextMonth.getText().toString());
-		//int day = Integer.parseInt(editTextDay.getText().toString());
 		
 		String strMonth = convertMonthToString(numMonth);
 		
 		String strDate = strMonth + " " + day + " " + year;
-		SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy", java.util.Locale.getDefault());
 		Date date;
 		try {
 			date = df.parse(strDate);
@@ -74,8 +85,36 @@ public class AddTask extends Activity {
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			AlertDialog.Builder nonParse = new AlertDialog.Builder(this);
+			
+			nonParse.setTitle("Can't read the date!");
+			
+			nonParse
+			.setMessage("Sorry! We are unable to interpret the date you entered. Please try again")
+			.setCancelable(false)
+			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int arg1) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}
+				
+			});
 		}
+	}
+	
+	private void refresh() {
+		Intent refresh = new Intent (this, AddTask.class);
+		startActivity(refresh);
+		this.finish();
+	}
+	
+	private void goToViewTask() {
+		Intent refresh = new Intent (this, ViewTask.class);
+		startActivity(refresh);
+		this.finish();
 	}
 	
 	private String convertMonthToString(int month) {

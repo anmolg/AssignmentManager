@@ -16,7 +16,7 @@ public class MainScreen extends Activity {
 		setContentView(R.layout.activity_main_screen);
 		
 		Button addAssignment = (Button) findViewById (R.id.addTaskButton);
-		Button viewLastDatabaseItem = (Button) findViewById (R.id.button2);
+		Button viewLastDatabaseItem = (Button) findViewById (R.id.viewAllTaskButton);
 		
 		addAssignment.setOnClickListener(new OnClickListener() 
 		{

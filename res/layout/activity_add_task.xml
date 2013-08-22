@@ -8,11 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddTask" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+
 
     <EditText
         android:id="@+id/addTaskSubject"
@@ -23,7 +19,7 @@
         android:layout_marginLeft="42dp"
         android:layout_marginTop="40dp"
         android:ems="10" 
-        android:text="Subject" >
+        android:hint="Subject" >
 
         <requestFocus />
     </EditText>
@@ -35,7 +31,7 @@
         android:layout_alignLeft="@+id/addTaskSubject"
         android:layout_below="@+id/addTaskSubject"
         android:ems="10" 
-        android:text="Title"/>
+        android:hint="Title"/>
 
     <EditText
         android:id="@+id/day"
@@ -45,7 +41,7 @@
         android:layout_below="@+id/addTaskTitle"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:text="Day" />
+        android:hint="Day (DD)" />
 
     <EditText
         android:id="@+id/month"
@@ -54,7 +50,7 @@
         android:layout_alignLeft="@+id/day"
         android:layout_below="@+id/day"
         android:ems="10"
-        android:text="Month" />
+        android:hint="Month (MM)" />
 
     <EditText
         android:id="@+id/year"
@@ -63,15 +59,24 @@
         android:layout_alignLeft="@+id/month"
         android:layout_below="@+id/month"
         android:ems="10" 
-        android:text="Year"/>
+        android:hint="Year (YYYY)"/>
 
     <Button
         android:id="@+id/ConfirmTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/year"
         android:layout_below="@+id/year"
-        android:layout_marginTop="36dp"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Add Task" />
+
+    <Button
+        android:id="@+id/addMoreTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ConfirmTaskButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Add More Tasks" />
 
 </RelativeLayout>

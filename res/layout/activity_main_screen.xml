@@ -26,12 +26,12 @@
         android:text="Add Task" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/viewAllTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addTaskButton"
         android:layout_below="@+id/addTaskButton"
         android:layout_marginTop="26dp"
-        android:text="View Text" />
+        android:text="View All Tasks" />
 
 </RelativeLayout>
