@@ -30,8 +30,10 @@ public class AddTask extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				addTask();
-				goToViewTask();
+				if(addTask()) {
+					goToViewTask();
+				}
+				//goToViewTask();
 				
 			}
 			
@@ -41,8 +43,10 @@ public class AddTask extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				addTask();
-				refresh();
+				if (addTask()) {
+					refresh();
+				}
+				//refresh();
 			}
 			
 		});
@@ -57,7 +61,7 @@ public class AddTask extends Activity {
 		return true;
 	}
 	
-	public void addTask() {
+	public Boolean addTask() {
 		EditText editTextSubject = (EditText) findViewById(R.id.addTaskSubject);
 		EditText editTextTitle = (EditText) findViewById(R.id.addTaskTitle);
 		EditText editTextYear = (EditText) findViewById(R.id.year);
@@ -84,6 +88,29 @@ public class AddTask extends Activity {
 				
 				TaskDB db = new TaskDB(this);
 				db.addTask(task);
+				return true;
+			}
+			
+			else {
+				AlertDialog.Builder nonParse = new AlertDialog.Builder(AddTask.this);
+				
+				nonParse.setTitle("Date has to be in the future!");
+				
+				nonParse
+				.setMessage("Sorry! But we can't add a task which has an older due date than the current time!")
+				.setCancelable(false)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int arg1) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+					
+				});
+				
+				nonParse.show();
+				return false;
 			}
 			
 		} catch (ParseException e) {
@@ -106,6 +133,7 @@ public class AddTask extends Activity {
 				
 			});
 		}
+		return false;
 	}
 	
 	private void refresh() {
