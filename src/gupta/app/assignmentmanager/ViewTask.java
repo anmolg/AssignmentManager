@@ -32,11 +32,11 @@ public class ViewTask extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_task);
 
-		allTasks = db.getAllTasks();
+		allTasks = db.getAllNewTasks();
 		convertToMappedList();
 		
 
-		deleteAllOldTasks();
+		//deleteAllOldTasks();
 		
 		//allTasks = db.getAllTasks(); // after old tasks are removed
 

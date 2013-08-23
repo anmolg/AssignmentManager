@@ -112,6 +112,33 @@ public class TaskDB extends SQLiteOpenHelper{
 		
 	}
 	
+	public List<Task> getAllNewTasks() {
+		List<Task> taskList = new ArrayList<Task>();
+		
+		// Select All Query
+		String selectQuery = "SELECT  * FROM " + TABLE_TASKS + " ORDER BY " + KEY_DATE + " ASC";
+		
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		
+		if (cursor.moveToFirst()) {
+			do {
+				long taskDate = Long.parseLong(cursor.getString(3));
+				int taskId = Integer.parseInt(cursor.getString(0));
+				Calendar now = Calendar.getInstance();
+				if (taskDate > now.getTimeInMillis()) {
+					Task task = new Task(taskId, cursor.getString(1), cursor.getString(2), taskDate);
+					taskList.add(task);	
+				}
+				
+			}
+			while (cursor.moveToNext());
+			
+		}
+		
+		return taskList;
+	}
+	
 	public int updateTask(Task task) {
 		return 0;
 	}
