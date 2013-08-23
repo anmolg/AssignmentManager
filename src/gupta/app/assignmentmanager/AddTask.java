@@ -2,6 +2,7 @@ package gupta.app.assignmentmanager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
@@ -78,10 +79,12 @@ public class AddTask extends Activity {
 			date = df.parse(strDate);
 			long dateEpoch = date.getTime();
 			
-			Task task = new Task(0, subject, title, dateEpoch);
-			
-			TaskDB db = new TaskDB(this);
-			db.addTask(task);
+			if (checkCurrentTime(dateEpoch)) {
+				Task task = new Task(0, subject, title, dateEpoch);
+				
+				TaskDB db = new TaskDB(this);
+				db.addTask(task);
+			}
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -115,6 +118,17 @@ public class AddTask extends Activity {
 		Intent refresh = new Intent (this, ViewTask.class);
 		startActivity(refresh);
 		this.finish();
+	}
+	
+	private Boolean checkCurrentTime(long epoch) {
+		Calendar now = Calendar.getInstance();
+		
+		if (epoch < now.getTimeInMillis()) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	private String convertMonthToString(int month) {
