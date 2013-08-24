@@ -6,8 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.AlertDialog;
+//import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
@@ -15,9 +15,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 
-public class AddTask extends Activity {
 
+public class AddTask extends FragmentActivity {
+	
+	private TextView dateOutput;
+	private int fYear;
+	private int fMonth;
+	private int fDay;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,6 +60,30 @@ public class AddTask extends Activity {
 			
 		});
 		
+		dateOutput = (TextView) findViewById(R.id.dateOutput);
+		Calendar now = Calendar.getInstance();
+		int year = now.get(Calendar.YEAR);
+		int month = now.get(Calendar.MONTH);
+		int day = now.get(Calendar.DAY_OF_MONTH);
+		String strMonth = convertMonthToStringFull(month + 1);
+		
+		dateOutput.setText(new StringBuilder()
+        // Month is 0 based, just add 1
+        .append("Due Date: ").append(strMonth).append("-").append(day).append("-")
+        .append(year).append(" "));
+		
+		dateOutput.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				DialogFragment newFragment = new DatePickerFragment();
+			    newFragment.show(getSupportFragmentManager(), "datePicker");
+			}
+			
+		});
+
+
 		//Intent intent = getIntent();
 	}
 
@@ -61,20 +94,30 @@ public class AddTask extends Activity {
 		return true;
 	}
 	
+	
+	public void showDatePickerDialog(View v) {
+	    DialogFragment newFragment = new DatePickerFragment();
+	    newFragment.show(getSupportFragmentManager(), "datePicker");
+	}
+
+	
 	public Boolean addTask() {
 		EditText editTextSubject = (EditText) findViewById(R.id.addTaskSubject);
 		EditText editTextTitle = (EditText) findViewById(R.id.addTaskTitle);
-		EditText editTextYear = (EditText) findViewById(R.id.year);
-		EditText editTextMonth = (EditText) findViewById(R.id.month);
-		EditText editTextDay = (EditText) findViewById(R.id.day);
+		//EditText editTextYear = (EditText) findViewById(R.id.year);
+		//EditText editTextMonth = (EditText) findViewById(R.id.month);
+		//EditText editTextDay = (EditText) findViewById(R.id.day);
 		
 		String subject = editTextSubject.getText().toString();
 		String title = editTextTitle.getText().toString();
-		String year = editTextYear.getText().toString();
-		String day = editTextDay.getText().toString();
-		int numMonth = Integer.parseInt(editTextMonth.getText().toString());
+		//String year = editTextYear.getText().toString();
+		String year = Integer.toString(fYear);
+		String day = Integer.toString(fDay);
+		//String day = editTextDay.getText().toString();
+		//int numMonth = Integer.parseInt(editTextMonth.getText().toString());
 		
-		String strMonth = convertMonthToString(numMonth);
+		//String strMonth = convertMonthToString(numMonth);
+		String strMonth = convertMonthToString(fMonth);
 		
 		String strDate = strMonth + " " + day + " " + year;
 		SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy", java.util.Locale.getDefault());
@@ -159,6 +202,19 @@ public class AddTask extends Activity {
 		}
 	}
 	
+	public void updateDate(int year, int month, int day) {
+		fYear = year;
+		fMonth = month + 1; // to account for the month being 0-11 and not 1-12
+		fDay = day;
+		String strMonth = convertMonthToStringFull(month + 1);
+		
+		dateOutput.setText(new StringBuilder()
+        // Month is 0 based, just add 1
+        .append("Due Date: ").append(strMonth).append("-").append(day).append("-")
+        .append(year).append(" "));
+	}
+
+	
 	private String convertMonthToString(int month) {
 		String monthString = "";
 		switch (month) {
@@ -196,6 +252,52 @@ public class AddTask extends Activity {
 		break;
 		
 		case 12: monthString = "Dec";
+		break;
+		
+		default: monthString = "Invalid Month";
+		break;
+
+		}
+		return monthString;
+	}
+	
+	private String convertMonthToStringFull(int month) {
+		String monthString = "";
+		switch (month) {
+		case 1: monthString = "January";
+		break;
+		
+		case 2: monthString = "February";
+		break;
+		
+		case 3: monthString = "March";
+		break;
+		
+		case 4: monthString = "April";
+		break;
+		
+		case 5: monthString = "May";
+		break;
+		
+		case 6: monthString = "June";
+		break;
+		
+		case 7: monthString = "July";
+		break;
+		
+		case 8: monthString = "August";
+		break;
+		
+		case 9: monthString = "September";
+		break;
+		
+		case 10: monthString = "October";
+		break;
+		
+		case 11: monthString = "November";
+		break;
+		
+		case 12: monthString = "December";
 		break;
 		
 		default: monthString = "Invalid Month";

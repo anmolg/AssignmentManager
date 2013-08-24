@@ -8,8 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddTask" >
 
-
-
     <EditText
         android:id="@+id/addTaskSubject"
         android:layout_width="wrap_content"
@@ -18,7 +16,7 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="40dp"
-        android:ems="10" 
+        android:ems="10"
         android:hint="Subject" >
 
         <requestFocus />
@@ -30,47 +28,25 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addTaskSubject"
         android:layout_below="@+id/addTaskSubject"
-        android:ems="10" 
-        android:hint="Title"/>
+        android:ems="10"
+        android:hint="Title" />
 
-    <EditText
-        android:id="@+id/day"
+    <TextView
+        android:id="@+id/dateOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addTaskTitle"
         android:layout_below="@+id/addTaskTitle"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Day (DD)"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/day"
-        android:layout_below="@+id/day"
-        android:ems="10"
-        android:hint="Month (MM)" 
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/month"
-        android:layout_below="@+id/month"
-        android:ems="10" 
-        android:hint="Year (YYYY)"
-        android:inputType="number" />
+        android:text="D-M-YYYY"
+        android:textSize="19sp" />
 
     <Button
         android:id="@+id/ConfirmTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/year"
+        android:layout_below="@+id/dateOutput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Add Task" />
 
     <Button
@@ -79,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ConfirmTaskButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="17dp"
         android:text="Add More Tasks" />
 
 </RelativeLayout>
