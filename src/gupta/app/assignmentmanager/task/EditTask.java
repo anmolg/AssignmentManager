@@ -91,6 +91,9 @@ public class EditTask extends FragmentActivity {
 				// TODO Auto-generated method stub
 				Bundle bundle = new Bundle();
 				bundle.putInt("options", 1);
+				bundle.putInt("year", fYear);
+				bundle.putInt("month", fMonth);
+				bundle.putInt("day", fDay);
 				DialogFragment newFragment = new DatePickerFragment();
 				newFragment.setArguments(bundle);
 			    newFragment.show(getSupportFragmentManager(), "datePicker");
@@ -214,7 +217,7 @@ public class EditTask extends FragmentActivity {
 	
 	public void updateDate(int year, int month, int day) {
 		fYear = year;
-		fMonth = month + 1; // to account for the month being 0-11 and not 1-12
+		fMonth = month; // to account for the month being 0-11 and not 1-12
 		fDay = day;
 		String strMonth = convertMonthToStringFull(month + 1);
 		
