@@ -1,5 +1,7 @@
 package gupta.app.assignmentmanager;
 
+import gupta.app.assignmentmanager.task.AddTask;
+import gupta.app.assignmentmanager.task.ViewTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

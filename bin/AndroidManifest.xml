@@ -23,12 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="gupta.app.assignmentmanager.AddTask"
+            android:name="gupta.app.assignmentmanager.task.AddTask"
             android:label="@string/title_activity_add_task" >
         </activity>
         <activity
-            android:name="gupta.app.assignmentmanager.ViewTask"
+            android:name="gupta.app.assignmentmanager.task.ViewTask"
             android:label="@string/title_activity_view_task" >
+        </activity>
+        <activity
+            android:name="gupta.app.assignmentmanager.task.EditTask"
+            android:label="@string/title_activity_edit_task" >
         </activity>
     </application>
 

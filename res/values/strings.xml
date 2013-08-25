@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_task">AddTask</string>
     <string name="title_activity_view_task">ViewTask</string>
+    <string name="task_options">Options</string>
+    <string name="title_activity_edit_task">EditTask</string>
 
 </resources>

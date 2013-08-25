@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AddTask" >
+    tools:context=".EditTask" >
 
     <EditText
         android:id="@+id/addTaskSubject"
@@ -36,27 +36,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addTaskTitle"
-        android:layout_alignRight="@+id/addTaskTitle"
         android:layout_below="@+id/addTaskTitle"
         android:text="D-M-YYYY"
         android:textSize="19sp" />
 
     <Button
-        android:id="@+id/AddTaskButton"
+        android:id="@+id/ConfirmTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dateOutput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="Add Task" />
+        android:text="Change Task" />
 
-    <Button
-        android:id="@+id/addMoreTaskButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/AddTaskButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="Add More Tasks" />
 
 </RelativeLayout>
