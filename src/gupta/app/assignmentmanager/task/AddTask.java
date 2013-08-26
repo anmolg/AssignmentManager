@@ -28,7 +28,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 
 
-public class AddTask extends FragmentActivity {
+public class AddTask extends Tasks {
 	
 	private TextView dateOutput;
 	private int fYear;
@@ -71,7 +71,7 @@ public class AddTask extends FragmentActivity {
 		fYear = now.get(Calendar.YEAR);
 		fMonth = now.get(Calendar.MONTH);
 		fDay = now.get(Calendar.DAY_OF_MONTH);
-		String strMonth = convertMonthToStringFull(fMonth + 1);
+		String strMonth = convertMonthToString(fMonth);
 		
 		dateOutput.setText(new StringBuilder()
         // Month is 0 based, just add 1
@@ -87,9 +87,6 @@ public class AddTask extends FragmentActivity {
 			}
 			
 		});
-
-
-		//Intent intent = getIntent();
 	}
 
 	@Override
@@ -106,9 +103,7 @@ public class AddTask extends FragmentActivity {
 		bundle.putInt("year", fYear);
 		bundle.putInt("month", fMonth);
 		bundle.putInt("day", fDay);
-	    DialogFragment newFragment = new DatePickerFragment();
-	    newFragment.setArguments(bundle);
-	    newFragment.show(getSupportFragmentManager(), "datePicker");
+	    super.createDatePicker(v, bundle);
 	}
 
 	
@@ -189,28 +184,16 @@ public class AddTask extends FragmentActivity {
 		this.finish();
 	}
 	
-	private void goToViewTask() {
-		Intent refresh = new Intent (this, ViewTask.class);
-		startActivity(refresh);
+	protected void goToViewTask() {
+		super.goToViewTask();
 		this.finish();
-	}
-	
-	private Boolean checkCurrentTime(long epoch) {
-		Calendar now = Calendar.getInstance();
-		
-		if (epoch < now.getTimeInMillis()) {
-			return false;
-		}
-		else {
-			return true;
-		}
 	}
 	
 	public void updateDate(int year, int month, int day) {
 		fYear = year;
-		fMonth = month; // to account for the month being 0-11 and not 1-12
+		fMonth = month; 
 		fDay = day;
-		String strMonth = convertMonthToStringFull(month + 1);
+		String strMonth = convertMonthToString(fMonth);
 		
 		dateOutput.setText(new StringBuilder()
         // Month is 0 based, just add 1
@@ -219,96 +202,5 @@ public class AddTask extends FragmentActivity {
 	}
 
 	
-	private String convertMonthToString(int month) {
-		String monthString = "";
-		switch (month) {
-		case 1: monthString = "Jan";
-		break;
-		
-		case 2: monthString = "Feb";
-		break;
-		
-		case 3: monthString = "Mar";
-		break;
-		
-		case 4: monthString = "Apr";
-		break;
-		
-		case 5: monthString = "May";
-		break;
-		
-		case 6: monthString = "Jun";
-		break;
-		
-		case 7: monthString = "Jul";
-		break;
-		
-		case 8: monthString = "Aug";
-		break;
-		
-		case 9: monthString = "Sep";
-		break;
-		
-		case 10: monthString = "Oct";
-		break;
-		
-		case 11: monthString = "Nov";
-		break;
-		
-		case 12: monthString = "Dec";
-		break;
-		
-		default: monthString = "Invalid Month";
-		break;
-
-		}
-		return monthString;
-	}
-	
-	private String convertMonthToStringFull(int month) {
-		String monthString = "";
-		switch (month) {
-		case 1: monthString = "January";
-		break;
-		
-		case 2: monthString = "February";
-		break;
-		
-		case 3: monthString = "March";
-		break;
-		
-		case 4: monthString = "April";
-		break;
-		
-		case 5: monthString = "May";
-		break;
-		
-		case 6: monthString = "June";
-		break;
-		
-		case 7: monthString = "July";
-		break;
-		
-		case 8: monthString = "August";
-		break;
-		
-		case 9: monthString = "September";
-		break;
-		
-		case 10: monthString = "October";
-		break;
-		
-		case 11: monthString = "November";
-		break;
-		
-		case 12: monthString = "December";
-		break;
-		
-		default: monthString = "Invalid Month";
-		break;
-
-		}
-		return monthString;
-	}
 
 }

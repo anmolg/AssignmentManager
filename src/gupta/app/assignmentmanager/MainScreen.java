@@ -15,7 +15,8 @@ public class MainScreen extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main_screen);
+		goToViewTask();
+		/*setContentView(R.layout.activity_main_screen);
 		
 		Button addAssignment = (Button) findViewById (R.id.addTaskButton);
 		Button viewLastDatabaseItem = (Button) findViewById (R.id.viewAllTaskButton);
@@ -31,7 +32,7 @@ public class MainScreen extends Activity {
 			public void onClick(View view) {
 				viewLastTask(view);
 			}
-		});
+		});*/
 	}
 
 	protected void viewLastTask(View view) {
@@ -39,7 +40,11 @@ public class MainScreen extends Activity {
 		startActivity(intent);
 		
 	}
-
+	
+	private void goToViewTask() {
+		Intent refresh = new Intent (this, ViewTask.class);
+		startActivity(refresh);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

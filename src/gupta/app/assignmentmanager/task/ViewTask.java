@@ -142,42 +142,28 @@ public class ViewTask extends FragmentActivity {
 
 	private void convertToMappedList() {
 		for (int i = 0; i < allTasks.size(); i++) {
-			HashMap<String, String> planet = new HashMap<String, String>();
+			HashMap<String, String> taskView = new HashMap<String, String>();
 			Task task = allTasks.get(i);
-			String appear = task.getSubject() + ": " + task.getTitle();
-			planet.put("task", appear);
-			taskList.add(planet);
+			Long epoch = task.getDate();
+			Date date = new Date (epoch);
+			DateFormat df = new SimpleDateFormat("MMM dd", java.util.Locale.getDefault());
+			String finalDate = df.format(date);
+			String appear = finalDate + " - " + task.getSubject() + ": " + task.getTitle();
+			taskView.put("task", appear);
+			taskList.add(taskView);
 		}
 
 
 
 	}
 
-	public Date convertEpochToDate(Long epoch) {
-		return null;
-	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_task, menu);
 		return true;
-	}
-	
-	private void deleteAllOldTasks() {
-		//TaskDB db = new TaskDB(this);
-		Calendar now = Calendar.getInstance();
-		
-		for (Task t : allTasks) {
-			if (t.getDate() < now.getTimeInMillis()) {
-				db.deleteTask(t);
-				Intent refresh = new Intent (this, ViewTask.class);
-				startActivity(refresh);
-				this.finish();
-				
-			}
-		}
-		
 	}
 	
 	private void goToAddTask() {

@@ -1,9 +1,6 @@
 package gupta.app.assignmentmanager.task;
 
 import gupta.app.assignmentmanager.R;
-import gupta.app.assignmentmanager.R.id;
-import gupta.app.assignmentmanager.R.layout;
-import gupta.app.assignmentmanager.R.menu;
 import gupta.app.assignmentmanager.database.Task;
 import gupta.app.assignmentmanager.database.TaskDB;
 import gupta.app.assignmentmanager.fragment.DatePickerFragment;
@@ -15,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class EditTask extends FragmentActivity {
+public class EditTask extends Tasks {
 	
 	private Button confirmTask;
 	private TextView dateOutput;
@@ -88,15 +84,7 @@ public class EditTask extends FragmentActivity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Bundle bundle = new Bundle();
-				bundle.putInt("options", 1);
-				bundle.putInt("year", fYear);
-				bundle.putInt("month", fMonth);
-				bundle.putInt("day", fDay);
-				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.setArguments(bundle);
-			    newFragment.show(getSupportFragmentManager(), "datePicker");
+				createDatePicker(arg0);
 			}
 			
 		});
@@ -117,12 +105,16 @@ public class EditTask extends FragmentActivity {
 		return true;
 	}
 	
-	public void showDatePickerDialog(View v) {
-	    DialogFragment newFragment = new DatePickerFragment();
-	    newFragment.show(getSupportFragmentManager(), "datePicker");
-	}
 
-	
+	private void createDatePicker(View v) {
+		Bundle bundle = new Bundle();
+		bundle.putInt("options", 1);
+		bundle.putInt("year", fYear);
+		bundle.putInt("month", fMonth);
+		bundle.putInt("day", fDay);
+		super.createDatePicker(v, bundle);
+		
+	}
 	public Boolean modifyTask() {
 		String subject = editTextSubject.getText().toString();
 		String title = editTextTitle.getText().toString();
@@ -159,7 +151,6 @@ public class EditTask extends FragmentActivity {
 
 					@Override
 					public void onClick(DialogInterface dialog, int arg1) {
-						// TODO Auto-generated method stub
 						dialog.dismiss();
 					}
 					
@@ -170,154 +161,27 @@ public class EditTask extends FragmentActivity {
 			}
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			AlertDialog.Builder nonParse = new AlertDialog.Builder(this);
-			
-			nonParse.setTitle("Can't read the date!");
-			
-			nonParse
-			.setMessage("Sorry! We are unable to interpret the date you entered. Please try again")
-			.setCancelable(false)
-			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int arg1) {
-					// TODO Auto-generated method stub
-					dialog.dismiss();
-				}
-				
-			});
+			e.printStackTrace();	
 		}
 		return false;
 	}
 	
-	private void refresh() {
-		Intent refresh = new Intent (this, EditTask.class);
-		startActivity(refresh);
+	protected void goToViewTask() {
+		super.goToViewTask();
 		this.finish();
 	}
 	
-	private void goToViewTask() {
-		Intent refresh = new Intent (this, ViewTask.class);
-		startActivity(refresh);
-		this.finish();
-	}
-	
-	private Boolean checkCurrentTime(long epoch) {
-		Calendar now = Calendar.getInstance();
-		
-		if (epoch < now.getTimeInMillis()) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
 	
 	public void updateDate(int year, int month, int day) {
 		fYear = year;
-		fMonth = month; // to account for the month being 0-11 and not 1-12
+		fMonth = month; 
 		fDay = day;
-		String strMonth = convertMonthToStringFull(month + 1);
+		String strMonth = convertMonthToString(month);  // to account for the month being 0-11 and not 1-12
 		
 		dateOutput.setText(new StringBuilder()
-        // Month is 0 based, just add 1
         .append("Due Date: ").append(strMonth).append("-").append(day).append("-")
         .append(year).append(" "));
 	}
 
 	
-	private String convertMonthToString(int month) {
-		String monthString = "";
-		switch (month) {
-		case 1: monthString = "Jan";
-		break;
-		
-		case 2: monthString = "Feb";
-		break;
-		
-		case 3: monthString = "Mar";
-		break;
-		
-		case 4: monthString = "Apr";
-		break;
-		
-		case 5: monthString = "May";
-		break;
-		
-		case 6: monthString = "Jun";
-		break;
-		
-		case 7: monthString = "Jul";
-		break;
-		
-		case 8: monthString = "Aug";
-		break;
-		
-		case 9: monthString = "Sep";
-		break;
-		
-		case 10: monthString = "Oct";
-		break;
-		
-		case 11: monthString = "Nov";
-		break;
-		
-		case 12: monthString = "Dec";
-		break;
-		
-		default: monthString = "Invalid Month";
-		break;
-
-		}
-		return monthString;
-	}
-	
-	private String convertMonthToStringFull(int month) {
-		String monthString = "";
-		switch (month) {
-		case 1: monthString = "January";
-		break;
-		
-		case 2: monthString = "February";
-		break;
-		
-		case 3: monthString = "March";
-		break;
-		
-		case 4: monthString = "April";
-		break;
-		
-		case 5: monthString = "May";
-		break;
-		
-		case 6: monthString = "June";
-		break;
-		
-		case 7: monthString = "July";
-		break;
-		
-		case 8: monthString = "August";
-		break;
-		
-		case 9: monthString = "September";
-		break;
-		
-		case 10: monthString = "October";
-		break;
-		
-		case 11: monthString = "November";
-		break;
-		
-		case 12: monthString = "December";
-		break;
-		
-		default: monthString = "Invalid Month";
-		break;
-
-		}
-		return monthString;
-	}
-
 }
