@@ -60,6 +60,7 @@ public abstract class Tasks extends FragmentActivity {
 	
 	protected Boolean checkCurrentTime(long epoch) {
 		Calendar now = Calendar.getInstance();
+		now.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, 0, 1);
 		
 		if (epoch < now.getTimeInMillis()) {
 			return false;

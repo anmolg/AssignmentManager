@@ -31,6 +31,9 @@ import android.support.v4.app.FragmentActivity;
 public class AddTask extends Tasks {
 	
 	private TextView dateOutput;
+	private Button confirmTask;
+	private Button addMoreTask;
+	
 	private int fYear;
 	private int fMonth;
 	private int fDay;
@@ -40,8 +43,8 @@ public class AddTask extends Tasks {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_task);
 		
-		Button confirmTask = (Button) findViewById(R.id.AddTaskButton);
-		Button addMoreTask = (Button) findViewById(R.id.addMoreTaskButton);
+		confirmTask = (Button) findViewById(R.id.AddTaskButton);
+		addMoreTask = (Button) findViewById(R.id.addMoreTaskButton);
 		
 		confirmTask.setOnClickListener(new OnClickListener() {
 
@@ -118,10 +121,11 @@ public class AddTask extends Tasks {
 		
 		String strMonth = convertMonthToString(fMonth);
 		
-		String strDate = strMonth + " " + day + " " + year;
-		SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy", java.util.Locale.getDefault());
-		Date date;
+		
 		try {
+			String strDate = strMonth + "-" + day + "-" + year + " 23:59:59";
+			SimpleDateFormat df = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss", java.util.Locale.getDefault());
+			Date date;
 			date = df.parse(strDate);
 			long dateEpoch = date.getTime();
 			
